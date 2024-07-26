@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,21 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+.text-base{
+	font-size: 1rem;
+	line-height: 1.5rem
+}
+.rounded-xl {
+  border-radius: .75rem;
+}
+
+
+p{
+  font-size: 1rem;
+  line-height: 1.5rem;
+  --tw-text-opacity: 1;
+	color: rgb(75 85 99 / var(--tw-text-opacity));
+  font-weight:300;
 }
