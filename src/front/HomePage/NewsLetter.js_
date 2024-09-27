@@ -1,0 +1,36 @@
+import React from "react";
+import Slider from "react-slick";
+import TestimonialCard from "../component/TestimonialCard";
+import NewLetterFrom from "../component/NewLetterFrom";
+
+const NewsLetter = () =>{
+    var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow:3,
+        slidesToScroll: 3,
+        margin:20
+      };
+    return(
+        <>
+            <section className="bg-slate-50 py-[60px] px-5">
+                <div className="container">
+                    <h2 className="text-xl text-center">NEWSLETTER</h2>
+                    <p className="text-lg">Join the community of job seekers and stay connected with a range of topics and aspects that revolve around D&I. Receive regular updates and learn how to navigate workplace dynamics</p>
+                     <div className="py-2">
+                        <Slider {...settings}>
+                            <TestimonialCard/>
+                            <TestimonialCard/>
+                            <TestimonialCard/>
+                        </Slider>
+                        <div className="text-center"><button className="btn btn-primary bg-transparent me-2  p-2 px-4 rounded-xl text-sm font-medium">View all companies</button>
+                        </div>
+                     </div>
+                </div>
+                <NewLetterFrom/>
+            </section>
+        </>
+    )
+}
+export default NewsLetter;

@@ -1,0 +1,191 @@
+import React, { useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { useLocation } from 'react-router-dom'; // Import useLocation
+import Logo from './Logo';
+import { Menu, ChevronRight, UsersRound, User, MenuIcon ,Bell, User2} from "lucide-react";
+import CardWithIcon from '../component/CardWithIcon';
+
+const Header = () => {
+  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
+  const isTabletOrMobile = useMediaQuery({ maxWidth: 767 });
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation(); // Get the current location
+
+
+  const userId = JSON.parse(localStorage.getItem("login_token")) || null;
+
+  // Close sidebar on route change
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [location]);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("login_token");
+      window.location.href = "/login"; // Redirect to the login page
+    }
+  };
+  return (
+    <header className='fixed'>
+      {isDesktopOrLaptop && (
+        <>
+        
+          <nav className='navbar sticky-top top'>
+            <div className='container'>
+              <Logo />
+             
+              <div className='justify-content-end'>
+              {userId ? (
+                <>
+                <a className='btn btn-primary btn-trans me-2  p-2 px-4' href="/login">Login</a>
+                <a className='btn btn-primary btn-trans me-2  p-2 px-4' href="/register">Registration</a>
+                <a href="/login">For Employers</a>
+                </>
+              ) : (
+              <>
+                <span className='searchbox'><input type='search' className='form-control'/></span>
+                <a className='btn me-2  p-2 px-2' href="/login"><Bell/></a> 
+                <a className='btn me-2  p-2 px-2' href="/login"><MenuIcon/></a>
+                <a className='btn me-2  p-2 px-2' href="/login"><User2/></a>
+              </>
+            )}
+              </div>
+             
+            </div>
+          </nav>
+        </>
+      )}
+      {isTabletOrMobile && (
+        <>
+          <header className='mobile_nav shadow'>
+            <button onClick={toggleSidebar} className={`toggle-btn ${isSidebarOpen ? 'open' : ''}`}>
+              <Menu fontSize={20} className="text-slate-700" />
+            </button>
+            <Logo />
+          </header>
+          <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
+          {userId ? (
+      <>
+      <CardWithIcon
+              startIcon={<User />}
+              text="Featured Jobs"
+              endIcon={<ChevronRight />}
+              to="/showAll/featured-jobs"
+            />
+            <CardWithIcon
+              startIcon={<UsersRound />}
+              text="Login"
+              endIcon={<ChevronRight />}
+              to="/login"
+            />
+            <CardWithIcon
+              startIcon={<UsersRound />}
+              text="Register"
+              endIcon={<ChevronRight />}
+              to="/login"
+            />
+            <CardWithIcon
+              startIcon={<UsersRound />}
+              text="Employer Login"
+              endIcon={<ChevronRight />}
+              to="/employer"
+            />
+            <CardWithIcon
+              startIcon={<UsersRound />}
+              text="Community"
+              endIcon={<ChevronRight />}
+              to="/community"
+            />
+
+      
+      </>
+    ) : (
+      <div className='rounded-md border border-grey-400 overflow-hidden shadow'>
+      <a className='p-4 bg-white cursor-pointer' href="/account">Account</a>
+          <div className='p-4 bg-white cursor-pointer'>Account</div>
+          <div className='p-4 bg-white cursor-pointer'>Notifications</div>
+          <div className='p-4 bg-white cursor-pointer'>Receipt</div>
+          <div className='p-4 bg-white cursor-pointer'>Terms & Conditions</div>
+          <div className='p-4 bg-white cursor-pointer'>Privacy Policy</div>
+          <div className='p-4 bg-white cursor-pointer'><button onClick={handleLogout}>Logout</button></div>
+          <button
+            type="button"
+            className="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#logoutModal"
+          >
+            Logout
+          </button>
+
+      {/* Logout Confirmation Modal */}
+      <div
+        className="modal fade"
+        id="logoutModal"
+        tabIndex="-1"
+        aria-labelledby="logoutModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="logoutModalLabel">
+                Confirm Logout
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              Are you sure you want to logout?
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    )}
+        </div>
+        </>
+      )}
+    </header>
+    
+  );
+};
+
+export default Header;

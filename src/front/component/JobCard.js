@@ -3,19 +3,25 @@ import React from "react";
 const JobCard = () =>{
     return(
         <>
-        <div className="jobcard bg-white rounded-xl shadow dark:bg-slate-950 flex flex-col">
+        <div className="jobcard_outer">
+        <div className="jobcard bg-white text-black p-3 flex flex-col">
             <div className="jobcard_inner">
                 <div className="emp_logo">
                 <img src="assets/images/emplogo.png" alt="Employer Logo"/>
                 </div>
                 <div className="job_details">
-                    <h4 className="jobTitle text-base">
-                    IS Service Manager,  AMEA ERP CoE
+                    <h4 className="jobTitle text-sm">
+                        Engneering &
+                        Design Engineer
                     </h4>
-                    <h5 className="location">Full-Time • ABB • Bangalore</h5>
-                    <h5 className="postedby">Job posted by Company</h5>
+                    <p className="location text-sm">Full-Time • ABB • Bangalore</p>
+                    <p className="postedby text-sm">Job posted by Company</p>
                 </div>
             </div>
+            <div className="text-center p-3">
+                <a href="" className="text-center">View jobs</a>
+            </div>
+        </div>
         </div>
     </>
     )

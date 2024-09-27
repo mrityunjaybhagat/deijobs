@@ -21,9 +21,9 @@ const Footer = () => {
                 <div>
                 <h5 className='mb-4'>Product</h5>
                 <ul className='fw-light f_links mt-5 list-unstyled'>
-                  <li><a href=''>Privacy Policy</a></li>
-                  <li><a href=''>Terms & Conditions</a></li>
-                  <li><a href=''>Terms of Use</a></li>
+                  <li><a href='/privacy_policy'>Privacy Policy</a></li>
+                  <li><a href='/t&c'>Terms & Conditions</a></li>
+                  <li><a href='/termsofuse'>Terms of Use</a></li>
                 </ul>
                 </div>
                 <div>

@@ -1,0 +1,259 @@
+/* global.scss */
+
+/* Color Variables */
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$danger-color: #e74c3c;
+$warning-color: #f1c40f;
+$info-color: #3498db;
+$light-color: #ecf0f1;
+$dark-color: #2c3e50;
+
+/* Breakpoints */
+$sm-breakpoint: 576px;
+$md-breakpoint: 768px;
+$lg-breakpoint: 992px;
+$xl-breakpoint: 1200px;
+
+/* Padding Values */
+$padding-values: (
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 2rem,
+  6: 2.5rem
+);
+
+/* Background Colors */
+.bg-primary {
+  background-color: $primary-color;
+}
+
+.bg-secondary {
+  background-color: $secondary-color;
+}
+
+/* ... other color classes ... */
+
+/* Text Colors */
+.text-primary {
+  color: $primary-color;
+}
+
+.text-secondary {
+  color: $secondary-color;
+}
+
+/* ... other text color classes ... */
+
+/* Opacity */
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-25 {
+  opacity: 0.25;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.opacity-75 {
+  opacity: 0.75;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+/* Display Utility Classes */
+
+/* Hide/Show for Small Screens */
+.d-sm-none {
+  @media (max-width: $sm-breakpoint) {
+    display: none;
+  }
+}
+
+.d-sm-block {
+  @media (max-width: $sm-breakpoint) {
+    display: block;
+  }
+}
+
+/* Hide/Show for Medium Screens */
+.d-md-none {
+  @media (max-width: $md-breakpoint) {
+    display: none;
+  }
+}
+
+.d-md-block {
+  @media (max-width: $md-breakpoint) {
+    display: block;
+  }
+}
+
+/* Hide/Show for Large Screens */
+.d-lg-none {
+  @media (max-width: $lg-breakpoint) {
+    display: none;
+  }
+}
+
+.d-lg-block {
+  @media (max-width: $lg-breakpoint) {
+    display: block;
+  }
+}
+
+/* Flex Layout Utility Classes */
+
+/* Flex Row */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* Flex Column */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+/* Responsive Flex Layouts */
+.flex-4-row {
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    flex: 1 1 25%; /* 4 items per row on large screens */
+  }
+  @media (max-width: $lg-breakpoint) {
+    > * {
+      flex: 1 1 50%; /* 2 items per row on medium screens */
+    }
+  }
+  @media (max-width: $md-breakpoint) {
+    > * {
+      flex: 1 1 100%; /* 1 item per row on small screens */
+    }
+  }
+}
+
+/* Flex Same Width */
+.flex-same-width {
+  display: flex;
+  flex-wrap: wrap;
+  > * {
+    flex: 1 1 auto;
+  }
+}
+
+/* Padding Utility Classes */
+@each $key, $value in $padding-values {
+  .px-#{$key} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+  .py-#{$key} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+}
+
+/* Responsive Padding Utility Classes */
+@each $key, $value in $padding-values {
+  @media (max-width: $sm-breakpoint) {
+    .px-sm-#{$key} {
+      padding-left: $value;
+      padding-right: $value;
+    }
+    .py-sm-#{$key} {
+      padding-top: $value;
+      padding-bottom: $value;
+    }
+  }
+  @media (max-width: $md-breakpoint) {
+    .px-md-#{$key} {
+      padding-left: $value;
+      padding-right: $value;
+    }
+    .py-md-#{$key} {
+      padding-top: $value;
+      padding-bottom: $value;
+    }
+  }
+  @media (max-width: $lg-breakpoint) {
+    .px-lg-#{$key} {
+      padding-left: $value;
+      padding-right: $value;
+    }
+    .py-lg-#{$key} {
+      padding-top: $value;
+      padding-bottom: $value;
+    }
+  }
+  @media (min-width: $xl-breakpoint) {
+    .px-xl-#{$key} {
+      padding-left: $value;
+      padding-right: $value;
+    }
+    .py-xl-#{$key} {
+      padding-top: $value;
+      padding-bottom: $value;
+    }
+  }
+}
+
+/* Gradient Utility Classes */
+
+/* Blue Gradient */
+.bg-gradient-blue {
+  background: linear-gradient(102deg, #00559F 21.31%, #0EA5E9 101.94%);
+}
+
+/* Green Gradient */
+.bg-gradient-green {
+  background: linear-gradient(102deg, #28a745 21.31%, #a8e063 101.94%);
+}
+
+/* Red Gradient */
+.bg-gradient-red {
+  background: linear-gradient(102deg, #ff5f6d 21.31%, #ffc371 101.94%);
+}
+
+/* Purple Gradient */
+.bg-gradient-purple {
+  background: linear-gradient(102deg, #9b59b6 21.31%, #e056fd 101.94%);
+}
+
+/* Yellow Gradient */
+.bg-gradient-yellow {
+  background: linear-gradient(102deg, #f39c12 21.31%, #f1c40f 101.94%);
+}
+
+/* Mixed Gradients */
+
+/* Blue-Green Gradient */
+.bg-gradient-blue-green {
+  background: linear-gradient(102deg, #00559F 21.31%, #28a745 101.94%);
+}
+
+/* Blue-Purple Gradient */
+.bg-gradient-blue-purple {
+  background: linear-gradient(102deg, #00559F 21.31%, #9b59b6 101.94%);
+}
+
+/* Red-Yellow Gradient */
+.bg-gradient-red-yellow {
+  background: linear-gradient(102deg, #ff5f6d 21.31%, #f39c12 101.94%);
+}
+
+/* Purple-Yellow Gradient */
+.bg-gradient-purple-yellow {
+  background: linear-gradient(102deg, #9b59b6 21.31%, #f1c40f 101.94%);
+}
