@@ -11,7 +11,7 @@ const CardWithIcon = ({ startIcon, text, imageSrc, endIcon, to }) => {
   };
 
   return (
-    <div style={styles.card} onClick={handleClick} className="sidebarcard" >
+    <div style={styles.card} onClick={handleClick} className="sidebarcard gap-4" >
       {imageSrc ? (
         <img src={imageSrc} className="card-icon" />
       ) : (

@@ -6,21 +6,16 @@ import LogoutModal from '../ui/LogoutModal';
 const Footer = () => {
   return (
     <>
-    <footer className="bg-primary">
-      <div className='container py-5'>
+    <footer className="footer bg-primary">
+      <div className='container'>
         <div className='row'>
             <div className='col-md-6'>
                 <Logo/>
                 <p className='fw-light mt-2'>
-                    A specialised job portal focused on promoting diversity, equity and inclusivity in the Indian job market
+                    A specialised job portal focused on promoting <br/>diversity, equity and inclusivity in the Indian job market
                 </p>
-                <ul className='fw-light f_links mt-5 list-unstyled'>
-                    <li><a href="">Privacy Policy</a></li>
-                    <li><a href="">Privacy Policy</a></li>
-                    <li><a href="">Privacy Policy</a></li>
-                </ul>
             </div>
-            <div className='col-6 d-flex justify-content-between ps-5'>
+            <div className='col-md-6 d-flex justify-content-between footer-right'>
                 <div>
                 <h5 className='mb-4'>Product</h5>
                 <ul className='fw-light f_links mt-5 list-unstyled'>
@@ -33,19 +28,22 @@ const Footer = () => {
                 <h5 className='mb-4'>Resources</h5>
                 <ul className='fw-light f_links mt-5 list-unstyled'>
                   <li><a href='/blog'>Blog</a></li>
-                  <li><a href='/pricing'>Pricing</a></li>
-                  <li><a href='/Events'>Events</a></li>
+                  <li><a href='/faq'>FAQ</a></li>
+                  {/* <li><a href='/Events'>Events</a></li> */}
                 </ul>
                 </div>
                 <div>
                 <h5 className='mb-4'>Follow Us</h5>
                 <ul className='fw-light f_links mt-5 list-unstyled'>
-                  <li><a href=''>LinkedIn</a></li>
-                  <li><a href=''>X</a></li>
-                  <li><a href=''>Facebook</a></li>
+                  <li><a href='https://www.linkedin.com/company/deijobsin/about/'>LinkedIn</a></li>
+                  <li><a href='https://www.instagram.com/deijobs.in/'>Instagram</a></li>
+                  <li><a href='https://www.facebook.com/people/DEIJobsin/61552768880052/'>Facebook</a></li>
                 </ul>
                 </div>
             </div>
+        </div>
+        <div className='copyright'>
+            <a href='/' style={{fontSize:'12px'}}>© DEI Jobs 2023. All rights reserved.</a>
         </div>
       </div>
     </footer>

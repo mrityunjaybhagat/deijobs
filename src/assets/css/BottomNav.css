@@ -25,12 +25,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content:center;
+    text-align:center;
   }
   
   .nav-items li a {
     text-decoration: none;
     color: #333;
-    font-size: 12px;
+    font-size: 16px;
   }
   
   .nav-items li a:hover {

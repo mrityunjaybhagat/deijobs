@@ -1,103 +1,134 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useResponsive } from '../../config/responsive';
 import BackButton from '../../components/ui/BackButton';
 const PrivacyPage = () =>{
+	const { isDesktopOrLaptop, isTabletOrMobile } = useResponsive();
 	return(
         <>
         <section className="main_container main_container_new">
 		    <div className="container">
-			<BackButton/>
-				<div className="card big_card">
+			{isDesktopOrLaptop && (
+				<BackButton/>
+			)}
+				<div className="card big_card textonly">
 			        <h1 className="txt-primary fs-4">Privacy Policy</h1>
 					<div>Introduction</div>
 			        <div className="mt-5">
-				        <p>At Sapphire Human Solutions, we value your privacy and are committed to safeguarding it in every possible way. This Privacy Policy outlines our current practices and policies regarding the collection of personal information and data from you through our website and other direct interactions. This policy complies with the applicable Indian data protection laws.</p>
-						<p>This Privacy Policy ("Policy") explains how Sapphire Human Solutions collects, uses, discloses, and transfers personal information from users through our websites and applications, collectively referred to as the "Platform." This policy is applicable to all individuals who visit our Platform or whose information we receive in connection with our services, including partners and other individuals associated with Sapphire Human Solutions (collectively referred to as "Users"). For the purposes of this Privacy Policy, "You" or "Your" refers to the person accessing our Platform.</p>
-						<p>About Sapphire Human Solutions and the Platform: www.deijobs.in is an online marketplace that offers users the ability to upload their resumes, search for job vacancies in various corporate organisations in India and abroad, and allows corporate bodies to post job openings and search for candidates. Additionally, www.deijobs.in provides various value-added services to corporate bodies, including uploading pictures, videos, managing alumni networks, showcasing CSR activities, and displaying testimonials.</p>
-						<p>This privacy policy is an integral part of our Terms of Use. Your use of the Site and any personal information you provide on the Site is subject to the terms of this Privacy Policy and our Terms of Use. If you are a registered User, you have agreed to this Privacy Policy. If you are not a registered User, i.e., a visitor, by visiting the Site, you consent to the collection and use of your information as per the terms of this Privacy Policy. Any disputes related to privacy are governed by this Privacy Policy and our Terms of Use.</p>
-						<p>Types of Information Collected by Sapphire Human Solutions:
-We collect various types of information to provide you with our services. The term "Personal Information" (PI) refers to information related to an identified or identifiable natural person, which includes common identifiers such as name, identification number, location data, online identifiers, and more, as defined by applicable laws. Here's how we collect different categories of Personal Information:</p>
-						<p>When you sign up for alerts on the Platform, we collect your name, email address, password, country, city, contact number, and your associated company or organization.</p>
-						<p>Registration on the Platform involves providing information typically found in a resume, such as your name, contact details (email address and mobile number), work experience, educational qualifications, and salary history.</p>
-						<p>Information about your usage of our services, including log information and location data, is collected when you use the Platform.</p>
-						<p>We may collect additional Personal Information, such as your name, age, contact details, and preferences, through surveys and forms.</p>
-						<p>You have the option to provide information regarding your caste, chosen gender, and eligibility for affirmative action programs.</p>
-						<p>When you communicate with us or other Users through the Platform, we collect information related to your communication.</p>
-						<p>Technical information about your system and interactions with our Platform is automatically collected and stored using cookies when you visit the Platform.</p>
-						<p>If you access the Platform using a device, we may collect technical information from the device and its location.
-						To ensure compliance with legal and regulatory obligations, we may record and monitor your communications with us, including telephone conversations.</p>
-						<p>If you choose to sign in with your social media account or connect your social media account with our services, we collect information in accordance with this Privacy Policy. Please refer to your social media provider's privacy policy for more details.</p>
-						<strong>Information You Provide:</strong>
+  <p>
+    Welcome to <b>DEIJobs.in</b>, an initiative by the <b>India Diversity Forum</b>, a Section 8 company committed to eliminating workplace discrimination and fostering inclusive hiring practices.
+  </p>
+  <p>
+    This Privacy Policy outlines how we collect, use, share, and protect your personal data when you access or use our platform, <b>www.deijobs.in</b>, whether as a candidate, employer, visitor, or partner. By using the platform, you agree to the terms set out in this policy and in our Terms of Use.
+  </p>
 
-						<p>While using www.deijobs.in, you may provide us with different types of information:</p>
-						<p>Anonymous information, including your IP address, visited areas of the Application, time and date of interactions, and link clicks. We use cookies to collect this information.
-						Personal information, such as your username, password, first and last names, email address, and mailing address, which you may provide during registration.
-						Additional personal information that you may include in your profile.</p>
-						<p>Information, opinions, voting records, and other content or materials ("Materials") that you post on the Application.</p>
-						<strong>Use of the Information We Collect:</strong>
-						<p>You have control over the personal information you share. We use the information for various purposes, including:</p>
-						<p>Providing our services and products, such as job alerts, calendar alerts, search results, recommended jobs, and social media communication facilities. Improving the quality of our services, enhancing your user experience, and improving the content on our Platform.</p>
-<p>Conducting market research and surveys to enhance our products and services. Preventing and detecting crimes, including fraud and other illegal activities, in compliance with our Terms of Use.</p>
-<p>Identity verification, government sanctions screening, and due diligence checks as required by law.
-</p>
-<p>Establishing, exercising, or defending legal rights in connection with legal proceedings.
-</p>
-<p>You can customise the types of emails you receive by changing your account settings on the Application. Certain communications, like service-related announcements and administrative messages, cannot be opted out of, except by terminating your account.</p>
-<p></p>
-<p>www.deijobs.in may use anonymous information collected to improve the quality of the Application, diagnose problems, maintain security, and provide services that users want. This information may also help us determine user demographics, interests, and behaviours, which may be shared with others.
-</p>
-<strong>Cookies and Other Tracking Technologies:</strong>
+  <h2>1. Introduction</h2>
+  <p>
+    At DEIJobs.in, we value your privacy and are committed to safeguarding it in every possible way. This Privacy Policy explains our current practices and policies regarding the collection and handling of personal data through our website and any direct interactions. We comply with applicable Indian data protection laws.
+  </p>
+  <p>
+    www.deijobs.in serves as an inclusive employment marketplace, allowing job seekers to upload resumes, explore career opportunities, and connect with employers. Employers can post job openings, search for candidates, and use value-added services like multimedia uploads, alumni engagement tools, CSR showcases, and testimonials.
+  </p>
+  <p>
+    This policy applies to all users of the platform—whether registered or visiting—and governs all data interactions through the site.
+  </p>
 
-<p>We utilise cookies and other tracking technologies on some of our web pages. A "cookie" is a piece of data stored on a user's computer. We use session ID cookies to confirm user logins, which terminate when the user closes their browser. We also use persistent cookies to store information that facilitates login for returning users.
-</p>
-<p>You can configure your browser to block cookies, but doing so may affect the functionality of the Application. When you click on external links, anonymous information may be shared with those websites.
-</p>
-<p>Most browsers can be configured to notify you when you receive a cookie, but be aware that blocking or erasing cookies may require you to re-enter your user ID and password to access certain parts of the Platform.
-</p>
-<p>
-racking technologies may record information such as Internet domain names, IP addresses, browser software, operating system types, clickstream patterns, and access dates and times. These technologies help us improve our Platform and overall website experience. We may also analyse non-personal information for trends and statistics.</p>
-<strong>Spreading the Word:</strong>
-<p>To promote causes you care about, you may choose to opt-in and use our optional promotion services. If you opt-in, we will send a one-time email to the email addresses in your address book, providing information about the Application. You can also provide a friend's email address for us to send a one-time invitation. We may use email information to track the success of these services. Any recipient of such emails can contact us at info@deijobs.in to request the removal of their information.</p>
+  <h2>2. Types of Information We Collect</h2>
+  <p>We collect a range of information to help us deliver and improve our services:</p>
+  <p><b>a. Information You Provide Directly:</b></p>
+  <ul>
+    <li>Name, email address, contact number, company/organization</li>
+    <li>Resume details (experience, education, location, salary history)</li>
+    <li>Gender, caste, or affirmative action status (optional)</li>
+    <li>Communication records through the platform</li>
+    <li>Content you upload (e.g., testimonials, posts, opinions)</li>
+  </ul>
+  <p><b>b. Automatically Collected Information:</b></p>
+  <ul>
+    <li>IP address, browser type, operating system, device information</li>
+    <li>Clickstream data, site usage patterns, location data</li>
+    <li>Cookies and tracking technologies</li>
+  </ul>
+  <p><b>c. Social Media Sign-In:</b></p>
+  <p>If you sign in via a social platform, we collect data per that platform’s privacy policy.</p>
 
-<strong>Sharing of Information:</strong>
-<p>We share your personally identifiable information under the following circumstances:</p>
-<p><strong>Your Consent:</strong>In certain situations, we rely on your consent to process your Personal Information. You may opt-in to share information with third parties, such as nonprofits, by checking the appropriate box when providing information. The third party's use of this information is governed by their privacy policy, not ours.</p>
+  <h2>3. Use of Information</h2>
+  <p>We use your data to:</p>
+  <ul>
+    <li>Facilitate your job search or recruitment activities</li>
+    <li>Send relevant alerts and notifications</li>
+    <li>Personalize your experience on the platform</li>
+    <li>Improve our content, functionality, and service delivery</li>
+    <li>Conduct market research and surveys</li>
+    <li>Fulfil legal obligations, identity verification, or background screening</li>
+    <li>Prevent fraud, misuse, or other violations of our Terms of Use</li>
+  </ul>
+  <p>You may customise the type of communications you receive. Certain administrative messages cannot be opted out of unless you deactivate your account.</p>
 
-<p>Compliance with a Legal Obligation: We may process your Personal Information as required to comply with legal obligations, such as responding to court orders or retaining records as mandated by applicable laws. We may also disclose user information in response to lawful requests or to comply with legal standards.
+  <h2>4. Sharing of Information</h2>
+  <p>We only share your personal information when necessary, and always with appropriate safeguards.</p>
+  <p><b>a. With Your Consent:</b></p>
+  <p>You may choose to share your information with third parties (e.g., companies, NGOs). These parties' data practices are governed by their own privacy policies.</p>
+  <p><b>b. Legal Compliance:</b></p>
+  <p>We may disclose data to comply with legal or regulatory obligations, including court orders or government requests.</p>
+  <p><b>c. Change of Ownership:</b></p>
+  <p>In the event of a merger, acquisition, or platform transition, your data may be transferred to the new entity.</p>
 
-</p>
-<p>Change of Ownership: If the ownership of www.deijobs.in or substantial portions of our business changes, your information may be transferred to the new owner to continue providing services. Your information will remain subject to the protections provided in our Privacy Policy.
-</p>
-<p>Remember that anyone with access to your username and password can access your personal information. Thus, we encourage you to keep your password confidential to prevent unauthorised access.
-</p>
-<strong>Deletions/Corrections/Updates:</strong>
-<p>You can delete information from your user profile page and edit your personal information to keep it accurate and up-to-date.
-</p>
-<strong>Protection of Minors:
-</strong>
-<p>www.deijobs.in does not offer its Application to or knowingly collect information from individuals under the age of eighteen (18). If you are under eighteen (18), your Guardian may provide us with any information. Any information received from individuals believed to be under eighteen (18) will be removed from our database.
-</p>
-<strong>Links to Other Websites:
-</strong>
-<p>The Application may contain links to other websites, including nonprofits, PACs, and other organisations. www.deijobs.in is not responsible for the privacy practices or content on linked websites.
-</p>
-<strong>Agreement:
-</strong>
-<p>By using the Application, you agree to abide by the current Terms of Use and this Privacy Policy. We reserve the right to make changes to this Privacy Policy. Changes will be posted on the Application, with the date of the update indicated at the top of the Privacy Policy. Non-material changes are effective upon posting, while material changes become effective after 15 days of posting. Our current Privacy Policy applies to all information in our possession, unless otherwise stated.
-</p>
-<strong>Security:
-</strong>
-<p>www.deijobs.in takes reasonable measures to protect our users' information, with account data stored on secure servers behind firewalls. Email and instant messaging are not secure forms of communication, so we advise against sending private information through these means. While we allow privacy settings to limit access to your information, no security measures are perfect. We cannot control the actions of other users who may have access to your pages and information. Copies of Materials may remain viewable in cached and archived pages or if other users have copied or stored your Materials. If you have security concerns, please contact us at info@deijobs.in.
-</p>
-<strong>Contact Information:
-</strong>
-<p>If you have any questions or concerns regarding this Privacy Policy, you can reach us at: Address: 1st Floor, 91 SPRINGBOARD, 74 Techno Park, 74/II, Cross Rd C, opp. Gate No. 2, Seepz, Andheri East, Mumbai, Maharashtra 400093
-</p>
-<p>
-Thank you for taking the time to review our Privacy Policy. Your privacy and data protection are important to us.</p>
+  <h2>5. Use of Cookies and Tracking Technologies</h2>
+  <p>DEIJobs.in uses cookies, pixels, and other tracking tools to enhance user experience and analyze usage. These may store:</p>
+  <ul>
+    <li>Session information (to maintain logins)</li>
+    <li>Preference data (to improve navigation)</li>
+    <li>Anonymous data (for diagnostics and analytics)</li>
+  </ul>
+  <p>You can disable cookies via your browser settings, though some features may be impacted.</p>
+
+  <h2>6. Data Access, Correction, and Deletion</h2>
+  <p>You can:</p>
+  <ul>
+    <li>View and update your profile data</li>
+    <li>Edit or delete specific information</li>
+    <li>Remove your account entirely, upon request</li>
+  </ul>
+  <p>To make such requests, contact us at <a href="mailto:info@deijobs.in">info@deijobs.in</a>.</p>
+
+  <h2>7. Protection of Minors</h2>
+  <p>DEIJobs.in is not intended for users under 18 years of age. If you are under 18, please ask a parent or guardian to submit any necessary information on your behalf. We do not knowingly collect information from minors.</p>
+
+  <h2>8. Information Security</h2>
+  <p>We use industry-standard security protocols and store user information on secure servers protected by firewalls. However, no platform is immune to all risks. We advise users not to share sensitive information through unsecured channels like email or instant messaging.</p>
+  <p>Please keep your login credentials confidential to prevent unauthorized access.</p>
+
+  <h2>9. External Links</h2>
+  <p>Our platform may contain links to third-party websites. We are not responsible for their content or privacy practices. We encourage you to read their respective privacy policies before interacting with them.</p>
+
+  <h2>10. User-Generated Content</h2>
+  <p>Any materials (e.g., opinions, videos, testimonials) you post may be visible to other users. Cached or archived versions of deleted materials may remain accessible. Please exercise discretion when sharing publicly.</p>
+
+  <h2>11. Communications and Promotions</h2>
+  <p>If you opt-in, we may:</p>
+  <ul>
+    <li>Send one-time emails to promote DEIJobs.in using your contacts</li>
+    <li>Share platform updates, event invites, or relevant resources</li>
+  </ul>
+  <p>Recipients can request removal by writing to <a href="mailto:info@deijobs.in">info@deijobs.in</a>.</p>
+
+  <h2>12. Updates to This Policy</h2>
+  <p>We may revise this policy periodically. Non-material updates are effective upon posting; material updates will take effect 15 days after being posted. Continued use of the platform implies acceptance of the updated policy.</p>
+
+  <h2>13. Contact Us</h2>
+  <p>For questions, concerns, or data-related requests, please reach out:</p>
+  <p><b>India Diversity Forum</b></p>
+  <p>
+    Address: 1st Floor, 91 SPRINGBOARD, 74 Techno Park, 74/II, Cross Rd C, Opp. Gate No. 2, SEEPZ, Andheri East, Mumbai, Maharashtra 400093
+  </p>
+  <p>Email: <a href="mailto:info@deijobs.in">info@deijobs.in</a></p>
+
+  <p>Thank you for trusting DEIJobs.in. We are committed to protecting your data and supporting your journey toward inclusive careers and workplaces.</p>
+</div>
 
 
 
-			        </div>
+					
 		        </div>		
 		    </div>
 	    </section>

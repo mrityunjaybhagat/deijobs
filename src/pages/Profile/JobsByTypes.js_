@@ -1,0 +1,84 @@
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchData } from '../../services/apiServices'; // Assuming fetchData is your function to fetch data
+import CompanyCard from '../../components/profile/CompanyCard.js';
+import FilterForm from '../../components/ui/FilterForm.js';
+
+const JobsPage = () => {
+  const { type } = useParams();  // Get the job type from the URL
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getJobs();
+  }, [type]);  // Trigger useEffect whenever the `type` changes
+ const getJobs = async (filters = {}) => {
+  setLoading(true);
+  try {
+    const url = `filter-job-type-job-list`;
+    const options = {
+      jobType: type,
+      limit: 6,
+      offset: 0,
+      userId: localStorage.getItem('login_token'),
+      ...filters // merge in filter form values
+    };
+
+    const response = await fetchData(url, {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(options)
+    });
+
+    setJobs(response.data);
+  } catch (error) {
+    console.error("Error fetching job data:", error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <section className='content'>
+            <div className='container'>
+            <div className="row">
+            <div className="col-md-4">
+              {/* <FilterForm/>*/}
+              <FilterForm
+                onApply={(filters) => getJobs(filters)}
+                onClear={() => getJobs()}    // <<-- this prevents the "onClear is not a function" error
+              />
+            </div>
+            <div className="col-md-7">
+            <div className="card">
+            <h3 className="card-title">{type} Recent Jobs</h3>
+        {jobs.length > 0 ? (
+          jobs.map((job) => (
+            <CompanyCard  
+                linkTo={job.id}
+                isJob={true}
+                jobpost={job.job_title} 
+                companyName={job.employer_name} 
+                companyLogo={job?.employer_logo}
+                jobsposted={job?.jobsposted || ''} 
+            />
+          ))
+        ) : (
+          <p>No jobs found for this type.</p>
+        )}
+        </div>
+            </div>
+            </div>
+        </div>
+        </section>
+  );
+};
+
+export default JobsPage;

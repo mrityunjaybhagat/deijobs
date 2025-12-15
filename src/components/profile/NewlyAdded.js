@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getRecentJobDetails } from '../../services/profileServices';
-import CompanyCard from './CompanyCard';
+import JobCard from './JobCard.js';
+import CompanyCard from './CompanyCard.js';
 
 const NewlyAdded = () => {
-    const [recentJobs, setRecentJobs] = useState([]);
+    const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
   
@@ -15,7 +16,7 @@ const NewlyAdded = () => {
   
         try {
           const jobDetails = await getRecentJobDetails(userId,offset, limit);
-          setRecentJobs(jobDetails); // Assuming jobDetails is an array of recent jobs
+          setJobs(jobDetails); // Assuming jobDetails is an array of recent jobs
           setLoading(false);
         } catch (err) {
           setError(err.message);
@@ -35,15 +36,24 @@ const NewlyAdded = () => {
     }
     return (
     <>
-      {recentJobs.map((company, index) => (
+      {jobs.map((job) => (
+        // <JobCard 
+        //   isJob={true}
+        //   linkTo={job.id} 
+        //   jobpost={job.job_title} 
+        //   companyName={job.employer_name} 
+        //   companyLogo={job?.employer_logo}
+        //   jobsposted={job?.jobsposted || ''} 
+        // />
         <CompanyCard 
-          key={index}
-          companyLogo={company?.employer_logo} 
-          companyName={company.job_title} 
-          jobpost={company.job_title}
-          jobsposted={company.jobsposted} 
-          // You can add more fields if necessary
-        />
+          key={job.id}
+          linkTo={job.id}
+          isJob={true}
+          jobpost={job.job_title} 
+          companyName={job.employer_name} 
+          companyLogo={job?.employer_logo} 
+          jobsposted={job?.jobsposted || ''} 
+          />
       ))}
     </>
   );

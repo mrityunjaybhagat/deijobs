@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import JobCard from '../ui/JobCard'
-import CompanyCard from '../profile/CompanyCard';
+import CompanyCard from '../profile/CompanyCard.js';
 
 const FeaturedJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -84,7 +84,10 @@ const FeaturedJobs = () => {
             employementType={job?.employement_type}
             location={job?.city}
             postedBy={job?.posted_by}
-            isJob={true}    
+            isVerticle={true}
+            isJob={true} 
+            jobId={job?.id}     
+            classname='flex-row'
             />
             </div>
             </>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getTopCompanies } from '../../services/profileServices';
-import CompanyCard from './CompanyCard';
+import CompanyCard from './CompanyCard.js';
 
 const TopCompanies = () => {
   const [companies, setCompanies] = useState([]);
@@ -34,6 +34,7 @@ const TopCompanies = () => {
     <>
         {companies.map((company, index) => (
             <CompanyCard 
+            linkTo={company?.employer_id}
             companyLogo={company?.company_logo} 
             companyName={company.company_name} 
             //jobpost={company?.jobpost} 

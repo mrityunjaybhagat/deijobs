@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useResponsive } from '../../config/responsive';
 import { useNavigate, useLocation } from "react-router-dom";
 import PrimaryButton from '../../components/form/PrimaryButton';
 import loginImg from "../../assets/images/Group 1707478927.png";
 import { verifyOtp } from '../../services/apiServices'; // Ensure you have this service function
 
 const VerifyOtp = () => {
+  const { isDesktopOrLaptop, isTabletOrMobile } = useResponsive();
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [timer, setTimer] = useState(30);
@@ -59,13 +61,11 @@ const VerifyOtp = () => {
       setShowResendButton(true);
     }
   }, [timer]);
-
   // Navigate back to the login page to change the mobile number
   const handleChangeMobileNumber = (e) => {
     e.preventDefault();
     navigate("/login");
   };
-
   // Function to handle OTP verification
   const handleOtpVerification = async (e) => {
     e.preventDefault();
@@ -75,10 +75,18 @@ const VerifyOtp = () => {
       const result = await verifyOtp(mobileNumber, completeOtp);
       if (result.success) {
         const { studentResumeExists, studentProfileExist } = result.data;
-        if (studentResumeExists) {
-          navigate("/create-profile");
-        } else if (studentProfileExist) {
+        // if (studentResumeExists) {
+        //   navigate("/create-profile");
+        // } else if (studentProfileExist) {
+        //   navigate("/jobs");
+        // } else {
+        //    //navigate("/create-profile");
+        //   navigate("/upload-resume");
+        // }
+        if (studentProfileExist) {
           navigate("/jobs");
+        } else if (studentResumeExists) {
+          navigate("/create-profile");
         } else {
           navigate("/upload-resume");
         }
@@ -94,10 +102,12 @@ const VerifyOtp = () => {
   return (
     <>
       <section className='' style={{padding:'0px'}}>
-          <div className='row'>
-          <div className="login_intro col-md-6">
+        <div className={`${isDesktopOrLaptop ? 'row' : 'container'}`}>
+        {isDesktopOrLaptop && (
+            <div className="login_intro col-md-6">
               <img src={loginImg} alt=""/>
             </div>
+          )}
             <div className="col-md-6 py-5">
               <div className='login_form'>
               <div className="card py-3">

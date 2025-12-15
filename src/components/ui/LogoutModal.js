@@ -1,4 +1,3 @@
-// LogoutModal.js
 import React from "react";
 
 const LogoutModal = ({ handleLogout }) => {
@@ -13,7 +12,12 @@ const LogoutModal = ({ handleLogout }) => {
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
               No
             </button>
-            <button type="button" className="btn btn-primary" onClick={handleLogout}>
+            <button 
+              type="button" 
+              className="btn btn-primary" 
+              onClick={() => handleLogout()}
+              data-bs-dismiss="modal" // Ensure modal closes after click
+            >
               Yes
             </button>
           </div>

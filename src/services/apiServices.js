@@ -87,3 +87,19 @@ export const verifyOtp = async (mobileNumber, completeOtp) => {
     };
   }
 };
+
+//Upload Resume
+
+export async function uploadResume(data) {
+  const url = "get-text-pdf";
+  try {
+    const response = await fetchData(url, {
+      method: "POST",
+      body: data,
+    });
+    return response;
+  } catch (error) {
+    console.error("Error uploading resume:", error);
+    throw error;
+  }
+}

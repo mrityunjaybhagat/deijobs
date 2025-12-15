@@ -1,0 +1,158 @@
+import React, { useState, useEffect } from 'react';
+import { fetchData } from '../../services/apiServices'; // Adjust the path if necessary
+import MultiSelect from '../form/MultiSelect';
+
+const WorkExperience = () => {
+  const userId = localStorage.getItem('login_token');
+  const [formData, setFormData] = useState({
+    userId: userId,
+    degree: '',
+    university: '',
+    yearOfPassing: '',
+    percentage: '',
+    description: '',
+  });
+
+  const [educationData, setEducationData] = useState([]);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Handle text inputs
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle MultiSelect inputs
+  const handleMultiSelectChange = (selectedOption, fieldName) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [fieldName]: selectedOption ? selectedOption.value : '',
+    }));
+  };
+
+  // Fetch profile data to display the old education data
+  const fetchEducationData = async () => {
+    try {
+      const response = await fetchData('get-profile-data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId }),
+      });
+      if (response.code === 200) {
+        setEducationData(response.data.work_experience);
+      } else {
+        console.error('Error fetching work experience data:', response.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  useEffect(() => {
+    // Fetch education data when the component is mounted (to show old data)
+    fetchEducationData();
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetchData('add-student-work-experience', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      console.log('Success:', response);
+      if (response.code === 200) {
+        setIsSubmitted(true);
+        fetchEducationData(); // Fetch updated education data on successful submission
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <div className="form-row">
+          <label>Degree</label>
+          <MultiSelect
+            endpoint='get-degrees'
+            onChange={(selectedOption) => handleMultiSelectChange(selectedOption, 'degree')}
+          />
+        </div>
+
+        <div className="form-row">
+          <label>University</label>
+          <MultiSelect
+            endpoint='get-universities'
+            onChange={(selectedOption) => handleMultiSelectChange(selectedOption, 'university')}
+          />
+        </div>
+
+        <div className="form-row">
+          <label>Year of Passing</label>
+          <input
+            type="date"
+            name="yearOfPassing"
+            className="form-control"
+            value={formData.yearOfPassing}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-row">
+          <label>Percentage</label>
+          <input
+            type="text"
+            name="percentage"
+            className="form-control"
+            placeholder="Percentage"
+            value={formData.percentage}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-row">
+          <label>Description</label>
+          <textarea
+            name="description"
+            className="form-control"
+            placeholder="Description"
+            value={formData.description}
+            onChange={handleChange}
+          ></textarea>
+        </div>
+
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+
+      {educationData.length > 0 && (
+        <div className="education-data-section">
+          <ul>
+            {educationData.map((education, index) => (
+              <li key={index}>
+                <strong>Company:</strong> {education.company_name} <br />
+                <strong>Role:</strong> {education.role_name} <br />
+                <strong>Start Date:</strong> {education.start_date} <br />
+                <strong>End Date:</strong> {education.end_date || 'Current'} <br />
+                <strong>Description:</strong> {education.description}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default WorkExperience;

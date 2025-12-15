@@ -5,7 +5,7 @@ const WhyChoose = () => {
       <>
         <section className="p-6">
             <div className="container">
-                <h2 className="primary_color superhead">Why DEI Us</h2>
+                <h2 className="primary_color superhead primary">Why DEI JOBS</h2>
                 <p className="text-gray-600 text-base font-light leading-normal">Experience a first in India with DEI Jobs: a dedicated platform connecting you to organisations that champion allyship,providing access to career-boosting services. Join DEI Jobs to connect with the perfect organisation,stay informed about industry trends, and host your resume to share with potential employers.</p>
                 <div className="row fetured_row align-items-center">
                     <div className="col-lg  col-md-12 align-middle">
@@ -27,7 +27,7 @@ const WhyChoose = () => {
                         Equity
                         </h4>
                         <p className="text-gray-600 text-base font-light leading-normal">
-                        In the workplace, diversity embraces people from a wide range of ethnicities, sexual orientations, socioeconomic backgrounds, age groups, genders, religions, and all the unique aspects that define us as individuals. Unfortunately, bias is frequently used to create divisions among diverse individuals based on these aspects.
+                          Workplace equity is the commitment to ensuring every employee has equal access to opportunities, resources, and fair treatment eliminating discrimination and enabling organisations and job seekers to achieve their potential. DEI jobs connect job seekers with organisations that value employees based on their skills, knowledge, and abilities, rather than their personal characteristics.
                         </p>
                         <p className="text-gray-600 text-base font-light leading-normal">DEI is dedicated to broadening our collective perspective and fostering an inclusive ecosystem where everyone can thrive.</p> 
                     </div>
@@ -38,10 +38,10 @@ const WhyChoose = () => {
                 <div className="row  fetured_row align-items-center">
                     <div className="col-lg col-md-12 col-sm-12">
                         <h4 className="primary_color text-xl font-semibold leading-7">
-                        Inclusivity
+                        Inclusion
                         </h4>
                         <p className="text-gray-600 text-base font-light leading-normal">
-                        In the workplace, diversity embraces people from a wide range of ethnicities, sexual orientations, socioeconomic backgrounds, age groups, genders, religions, and all the unique aspects that define us as individuals. Unfortunately, bias is frequently used to create divisions among diverse individuals based on these aspects.
+                         Inclusion means employees are cherished and embraced, irrespective of their background or situation. DEI Jobs showcases workplaces that cultivate a profound sense of belonging among colleagues.
                         </p>
                         <p className="text-gray-600 text-base font-light leading-normal">DEI is dedicated to broadening our collective perspective and fostering an inclusive ecosystem where everyone can thrive.</p> 
                     </div>

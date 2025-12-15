@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getRecemndedJobData } from '../../services/profileServices';
-import CompanyCard from './CompanyCard';
+import CompanyCard from './CompanyCard.js';
 import Slider from 'react-slick';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -30,7 +30,7 @@ const RecemendedData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem('login_token');
 
   const fetchJobs = async () => {
     const offset = 0;
@@ -61,7 +61,7 @@ const RecemendedData = () => {
   }
 //Slider Settings 
 var settings = {
-    dots: false,
+    dots: true,
     infinite: false,
     speed: 500,
     slidesToShow:2,
@@ -70,6 +70,29 @@ var settings = {
     arrows:1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [
+    {
+      breakpoint: 1024, // tablet / small laptop
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      }
+    },
+    {
+      breakpoint: 768, // mobile
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      }
+    },
+    {
+      breakpoint: 480, // small mobile
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      }
+    }
+  ]
   };
   return (
     <>
@@ -78,10 +101,15 @@ var settings = {
         <div className='p-2 recjob'>
         <CompanyCard 
           key={index}
+          isJob={true}
+          linkTo={company?.id}
+          jobId={company?.id}
           companyLogo={company?.employer_logo} 
           companyName={company.job_title} 
           jobpost={company.job_title}
           jobsposted={company.jobsposted} 
+          employementType={company.employement_type}
+          location={company.location}
           // You can add more fields if necessary
         />
         </div>

@@ -1,12 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useResponsive } from '../../config/responsive';
 import BackButton from '../../components/ui/BackButton';
 const TermsPage = () =>{
+	const { isDesktopOrLaptop, isTabletOrMobile } = useResponsive();
 	const navigate = useNavigate();
     return(
         <>
         <section className="main_container main_container_new">
 		    <div className="container">
-			<BackButton/>
+			{isDesktopOrLaptop && (
+				<BackButton/>
+			)}
 				<div className="card big_card">
 			        <h1 className="txt-primary fs-4">Privacy Policy</h1>
 			        <div className="mt-5">				        

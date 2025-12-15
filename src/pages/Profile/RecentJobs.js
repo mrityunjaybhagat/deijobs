@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getRecentJobDetails } from "../../services/profileServices"; // Path to appServices.js
-import CompanyCard from "../../components/profile/CompanyCard";
+import CompanyCard from "../../components/profile/CompanyCard.js";
 import ProfileCard from "../../components/profile/ProfileCard";
+import FilterForm from "../../components/ui/FilterForm.js";
 
 const RecentJobs = () => {
   const [recentJobs, setRecentJobs] = useState([]);
@@ -40,10 +41,10 @@ const RecentJobs = () => {
     <section className='content'>
             <div className='container'>
             <div className="row">
-            <div className="col-md-3">
-              <ProfileCard/>            
+            <div className="col-md-4">
+              <FilterForm/>          
             </div>
-            <div className="col-md-8">
+            <div className="col-md-7">
             <div className="card">
             <h3 className="card-title">Recent Jobs</h3>
             {recentJobs.length === 0 ? (

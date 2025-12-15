@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CompanyCard from '../../components/profile/CompanyCard';
+import CompanyCard from '../../components/profile/CompanyCard.js';
 import SectionWrapper from '../../components/home/SectionWrapper';
 
 const FeaturedJobsPage = () => {
@@ -47,29 +47,31 @@ const FeaturedJobsPage = () => {
   return (
     <>
       <SectionWrapper className="content"
-        headClass='d-flex justify-content-center'
+        headclassName='d-flex justify-content-center'
         headerContent={
           <>
           <h2 className="">Featured Jobs</h2>
           </>
         }
     >
-      <div className='d-flex'>
+      <div className='fjob'>
         {error && <p>{error}</p>}
         {jobs.length === 0 && !error ? (
           <p>Loading...</p>
         ) : (
           jobs.map((job) => (
-            <div className='p-2' style={{flex:'25%'}}>
+            <div className='job-card_outer p-1' style={{flex:'25%'}}>
             <CompanyCard 
-            companyLogo={job?.employer_logo} 
-            companyName={job.employer_name} 
-            jobpost={job?.job_title} 
-            jobsposted={job?.jobs_count} // Pass jobsposted if available
-            employementType={job?.employement_type}
-            location={job?.city}
-            postedBy={job?.posted_by}
-            isJob={true}    
+              companyLogo={job?.employer_logo} 
+              companyName={job.employer_name} 
+              jobpost={job?.job_title} 
+              jobsposted={job?.jobs_count} // Pass jobsposted if available
+              employementType={job?.employement_type}
+              location={job?.city}
+              postedBy={job?.posted_by}
+              isJob={true}
+              isVerticle={true}  
+              jobId={job?.id}  
             />
             </div>          
           ))

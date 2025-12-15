@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 //import './PrimaryButton.css'; // Optional: Import CSS for styling
 
-const PrimaryButton = ({ onClick, disabled, text }) => {
+const PrimaryButton = ({ onClick, disabled = false, text , }) => {
   return (
     <button 
       className={`btn btn-primary primary-button ${disabled ? 'disabled' : ''}`} 
@@ -31,8 +31,8 @@ PrimaryButton.propTypes = {
   text: PropTypes.node.isRequired
 };
 
-PrimaryButton.defaultProps = {
-  disabled: false
-};
+// PrimaryButton.defaultProps = {
+//   disabled: false
+// };
 
 export default PrimaryButton;

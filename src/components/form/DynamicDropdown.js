@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const DynamicDropdown = ({ endpoint, iconSrc = null,placeholder = null }) => {
+const DynamicDropdown = ({ classname, endpoint, iconSrc = null, placeholder = 'Select One', onSelect }) => {
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,21 +19,23 @@ const DynamicDropdown = ({ endpoint, iconSrc = null,placeholder = null }) => {
         setLoading(false);
       }
     };
-
     fetchOptions();
   }, [endpoint]);
 
   const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+    const selectedValue = event.target.value;
+    setSelectedValue(selectedValue);
+    onSelect(selectedValue); // Pass the selected value to the parent component
   };
+
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
 
   return (
     <div className="form-group d-flex gap-2 py-2">
-	  {iconSrc && <img src={iconSrc} alt="icon" />}
-      <select className="form-control" value={selectedValue} onChange={handleChange}>
+	  {iconSrc && <img src={iconSrc} alt="icon"/>}
+      <select className={`form-control ${classname || ''}`} value={selectedValue} onChange={handleChange}>
         <option value="" disabled hidden>
           {placeholder}
         </option>

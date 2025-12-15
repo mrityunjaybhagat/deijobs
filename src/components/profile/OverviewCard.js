@@ -10,7 +10,7 @@ const OverviewCard = ({ iconSrc, text, count, goTo }) => {
 
   return (
     <>
-      <div className='overview_card col' onClick={() => handleNavigation(goTo)}>
+      <div className='overview_card col' onClick={() => handleNavigation(goTo)} style={{cursor:'pointer'}}>
         <div className='card p-2 w-100'>
           <h3 className=''>{count}</h3>
           <div className='d-flex gap-4' style={{ justifyContent: 'space-between', alignItems: 'center' }}>

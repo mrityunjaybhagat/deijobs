@@ -44,8 +44,8 @@ const OverviewData = () => {
 
   return (
     <>
-    <OverviewCard count={saveJobCount} text='Saved Jobs' iconSrc={icons['bookmark.svg']}   goTo='/showAll/saved-jobs' />
-    <OverviewCard count={appliedJobCount} text='Applied Jobs' iconSrc={icons['briefcase_blue.svg']}   goTo='/showAll/applied-jobs'/>
+    <OverviewCard count={saveJobCount} text='Saved Jobs' iconSrc={icons['bookmark.svg']}   goTo='/jobs/saved' />
+    <OverviewCard count={appliedJobCount} text='Applied Jobs' iconSrc={icons['briefcase_blue.svg']}   goTo='/jobs/applied'/>
     {/* <OverviewCard count={shareJobCount} text='Shared Jobs' iconSrc={icons['briefcase_blue.svg']}/> */}
     </>
   );

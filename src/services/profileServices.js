@@ -5,7 +5,6 @@ const userId = localStorage.getItem("login_token");
 
 export async function getUserData(userId) {
   const url = `${BASE_URL}get-profile-data?userId=${userId}`;
-
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -29,7 +28,6 @@ export async function getUserData(userId) {
 export async function createStudentProfile(data) {
   const userId = localStorage.getItem("login_token"); // Get userId from localStorage
   const url = `create-student-profile?userId=${userId}`;
-
   try {
     const response = await fetchData(url, {
       method: "POST",
@@ -71,15 +69,19 @@ export async function getVarificationData(userId) {
   }
 }
 
-export async function sendEmailOtp(userId) {
-  const url = `${BASE_URL}candidate-email-otp?email=${userId}`;
+export async function sendEmailOtp(userId, email) {
+  const url = 'candidate-email-otp'; // Remove email from the query parameters
+
   try {
     const response = await fetchData(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userId }), 
+      body: JSON.stringify({
+        userId,
+        email,
+      }), // Send userId and email in the request body
     });
 
     return response; // Return the OTP response
@@ -92,16 +94,18 @@ export async function sendEmailOtp(userId) {
 
 
 export async function getPlatformSettings(userId) {
-  const url = `candidate-platform-setting?userId=${userId}`;
+  const url = 'candidate-platform-setting';
 
   try {
     const response = await fetchData(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-      }
+      },
+      body: JSON.stringify({
+        userId,
+      }),
     });
-
     return response; 
   } catch (error) {
     console.error("Error fetching platform settings:", error);
@@ -110,14 +114,18 @@ export async function getPlatformSettings(userId) {
 }
 
 export async function updatePlatformSettings(userId, newStatus) {
-  const url = `add-candidate-platform-setting?userId=${userId}`;
+  const url = 'add-candidate-platform-setting';
   try {
     const response = await fetchData(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ userId, job_alerts: newStatus }),
+      body: JSON.stringify({ 
+        userId, 
+        key: "job_alerts", // This key should match the expected column in the database
+        value: newStatus // Ensure the key matches the expected format
+      }),
     });
 
     return response;
@@ -126,6 +134,7 @@ export async function updatePlatformSettings(userId, newStatus) {
     throw error;
   }
 }
+
 
 /*Jobs Pages */
 export async function getOverviewData(userId) {
@@ -272,4 +281,63 @@ export async function getRecentJobDetails(userId, offset, limit) {
   }
 }
 
+//Saved Jobs
+export async function getCompanyJobDetails(userId, offset, limit, employerId) {
+  const url = `get-specific-company-job-list?userId=${userId}&offset=${offset}&limit=${limit}&employerId=${employerId}`;
+  try {
+    const response = await fetchData(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
+    if (response.code !== 200) {
+      throw new Error('Failed to fetch saved job details');
+    }
+
+    return response; // No need to return `response.data` directly here.
+  } catch (error) {
+    console.error("Error fetching saved job details:", error);
+    throw error;
+  }
+}
+
+//Verify email
+export async function postVerification(endpoint, data) {
+  const url = "/api/" + endpoint;
+
+  try {
+    const response = await fetchData(url, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response;
+  } catch (error) {
+    console.error("Error sending OTP:", error);
+    throw error;
+  }
+}
+
+//Upload
+export async function uploadResume(data) {
+  const url = "/api/get-text-pdf";
+
+  try {
+    const response = await fetchData(url, {
+      method: "POST",
+      body: data,
+      headers: {
+        // "Content-Type": "multipart/form-data", // Set the appropriate content type
+      },
+    });
+    return response;
+  } catch (error) {
+    // Handle error
+    console.error("Error uploading resume:", error);
+    throw error;
+  }
+}

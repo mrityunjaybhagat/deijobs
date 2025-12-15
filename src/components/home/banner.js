@@ -1,7 +1,7 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useResponsive } from '../../config/responsive';
-
+import InputWithIcon from "../form/InputWithIcon";
+import searchIcon from '../../assets/icons/search.svg';
 const HomeBanner = () => {
     const navigate = useNavigate();
     const { isDesktopOrLaptop, isTabletOrMobile } = useResponsive();
@@ -9,20 +9,28 @@ const HomeBanner = () => {
         <> 
         {isTabletOrMobile && (
         <>
-        <section className="banner">
+        <section className="banner no-background">
             <div className="container">
-          <form className=''>
-            <input onClick={() => navigate("/search-jobs")} type='search' className='form-control'/>
-          </form>
-          </div>
+                <InputWithIcon 
+                classname="mobilesearch"
+                icon={<img src={searchIcon} />}>
+                    <input onClick={() => navigate("/search-jobs")} type='search' className='form-control' placeholder="Search for DEI Jobs"/>
+                </InputWithIcon>
+            </div>
         </section>
         </>
 		  )}  
-        <section class="banner">
-            <div class="container">
-                <h1 class="header_title">Uniting Diversity! <span>Building a Community!</span></h1>
-                <h4 class="fw-light">Promoting Inclusivity through Opportunity</h4>
-                <h5 class="fw-light">Connecting Multi-talented Job Seekers with D&amp;I Jobs. Find the job you love.</h5>
+        <section className="banner">
+            <div className="container">
+                <h1 className="header_title">Uniting Diversity! <span>Building a Community!</span></h1>
+                <h4 className="fw-light">Promoting Inclusivity through Opportunity</h4>
+                <h5 className="fw-light">Connecting Multi-talented Job Seekers with D&amp;I Jobs. <span>Find the job you love.</span></h5>
+                {isTabletOrMobile && (
+                <>
+                    <a href="/login" className="btn btn-primary w-100 my-4">Candidate Signup/Login</a>
+                    <a href="/login" className="btn btn-trans w-100">Employer Signup/Login</a>
+                </>
+                )}
             </div>
         </section>
     </>

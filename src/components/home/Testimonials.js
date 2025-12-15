@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import React, { useEffect, useState } from 'react';
 import TestimonialCard from "../../components/ui/TestimonialCard";
+import CustomSlider from "../ui/CustomSlider";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -28,27 +29,20 @@ const Testimonials = () => {
   if (loading) {
     return <p>Loading testimonials...</p>;
   }
-  var settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow:3,
-    slidesToScroll:1,
-    arrows:1,
-    responsive: [
+  return (
+    <>
+      <CustomSlider customSettings={{slidesToShow:2.9,arrows:true,
+      responsive: [
       {
         breakpoint:767,
         settings: {
           slidesToShow:1.1,
           slidesToScroll:1,
-          arrows:0,
+          arrows:false,
         }
       },
     ]
-  };
-  return (
-    <>
-      <Slider {...settings}>
+      }}>
         {testimonials.length > 0 ? (
           testimonials.map((testimonial, index) => (
             <TestimonialCard 
@@ -63,7 +57,7 @@ const Testimonials = () => {
         ) : (
           <p>No testimonials available.</p>
         )}
-      </Slider>
+      </CustomSlider>
     </>
   );
 };

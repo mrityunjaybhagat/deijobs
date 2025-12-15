@@ -1,0 +1,116 @@
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { fetchData } from '../../services/apiServices';
+import './Autocomplete.css';
+
+const Autocomplete = ({
+  endpoint,
+  onSelect,
+  placeholder = 'Type to search',
+  icon,
+  isImage = false,
+  classname,
+  value = ''
+}) => {
+  const [inputValue, setInputValue] = useState(value);
+  const [suggestions, setSuggestions] = useState([]);
+  const [selected, setSelected] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+  if (value) {
+    setInputValue(value);  // show prefilled value
+    setSelected(true);     // mark as selected so suggestions don’t overwrite it
+  }
+}, [value]);
+
+  // Fetch suggestions based on inputValue
+  useEffect(() => {
+    if (!inputValue.trim()) {
+      setSuggestions([]);
+      return;
+    }
+
+    const debounceTimeout = setTimeout(async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetchData(endpoint, { query: inputValue });
+        if (response && Array.isArray(response.data)) {
+          const filtered = response.data
+            .filter(item => item.name.toLowerCase().includes(inputValue.toLowerCase()))
+            .map(item => ({ label: item.name, value: item.name }));
+          setSuggestions(filtered);
+        } else {
+          setError('Error loading data');
+        }
+      } catch (err) {
+        setError('Error loading data');
+      } finally {
+        setLoading(false);
+      }
+    }, 300);
+
+    return () => clearTimeout(debounceTimeout);
+  }, [inputValue, endpoint]);
+
+  const handleInputChange = e => {
+    setInputValue(e.target.value);
+    setSelected(false);
+  };
+
+  const handleSuggestionClick = suggestion => {
+    setInputValue(suggestion.label);
+    setSuggestions([]);
+    
+    onSelect(suggestion);
+  };
+
+  return (
+    <div className={`autocomplete-container ${classname || ''}`}>
+      {icon && (
+        isImage ? (
+          <span className="inputicon"><img src={icon} alt="icon" /></span>
+        ) : (
+          <span className="inputicon">{icon}</span>
+        )
+      )}
+      <input
+        type="text"
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder={placeholder}
+        className="form-control autocomplete-input"
+      />
+
+      {loading && <div className="loading">Loading...</div>}
+      {error && <div className="error">{error}</div>}
+      {suggestions.length > 0 && (
+        <ul className="suggestions-list">
+          {suggestions.map(suggestion => (
+            <li
+              key={suggestion.value}
+              onMouseDown={() => handleSuggestionClick(suggestion)}
+              className="suggestion-item"
+            >
+              {suggestion.label}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+Autocomplete.propTypes = {
+  endpoint: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  icon: PropTypes.node,
+  isImage: PropTypes.bool,
+  classname: PropTypes.string,
+  value: PropTypes.string,
+};
+
+export default Autocomplete;

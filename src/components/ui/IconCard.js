@@ -13,7 +13,8 @@ const IconCard = ({ iconSrc,text,goTo}) => {
             padding:'20px',
             height:'120px',
             width:'120px',
-            textAlign:'center'
+            textAlign:'center',
+            cursor:'pointer',
             }} onClick={() => handleNavigation(goTo)}>
             <img src={iconSrc} style={{width:'60%',margin:'0 auto'}}/>
             <p>{text}</p>
