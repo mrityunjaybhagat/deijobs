@@ -19,7 +19,6 @@ a {
 	color: #00559F;
 	display:inline-block;
 }
-
 img {
 	max-width: 100%;
 }
@@ -400,7 +399,6 @@ input {
 /* Profile Page */
 .card .toggle-head h3.card-title{font-size:14px;color:#00559F;}
 .card .toggle-head h3.card-title img{display:none;}
-.probox{}
 .w-15{width:15%;}
 .container_box{
 	text-align:left;
